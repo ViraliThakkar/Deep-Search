@@ -1,0 +1,157 @@
+
+<!Doctype html>
+
+<html>
+ <head>
+     <meta charset="UTF-8">
+    <title>Flask Intro - login page</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="http://code.jquery.com/jquery 2.1.4.min.js"></script>
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+
+ <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+    <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
+<style>
+
+    @import url('https://netdna.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.min.css');
+ .container {
+    margin-top: 30px;
+    width: 400px;
+}
+.center { margin: 0 auto; width: 400px;
+
+margin-top: 50px;
+
+}
+        body {
+    background-image: url("ZZ.jpg");
+      background-size:cover;
+}
+
+img {
+vertical-align: middle
+    display:block;
+}
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.sidee{
+margin-left: 100px;
+}
+.button2 {background-color: #008CBA;}
+
+</style>
+ </head>
+ <body>
+
+    <!----------------------------------->
+<div class="center">
+<video width="400" id="vd" class="center" controls>
+  <source src="goldeneye.mp4" type="video/mp4">
+
+  Your browser does not support HTML5 video.
+</video>
+    <br/>
+    <input type="text" id="tb"/><input id="submitbutton" class="button button2" type="submit" value="Search">
+    <br/>
+    <h1>Recent Videos</h1>
+     <br/>
+    </div>
+<div class="sidee">
+     <a href="#" id="1" class="w3-bar-item w3-button"><img id="11" border="0" style="top:0;left:0;" src="goldeneye.png" height="300" width="300" alt="goldeneye.mp4"> </a>
+      <a href="#" id="2" class="w3-bar-item w3-button"><img id="22" border="0" style="top:0;left:0;" src="Hacktech.png" height="300" width="300" alt="Hacktech.mp4"></a>
+      <a href="#" id="3" class="w3-bar-item w3-button"><img id="33" border="0" style="top:0;left:0;" src="Crime.png" height="300" width="300" alt="Crime.mp4"></a>
+</div><!--<div class="container">
+
+    <div class="progres//////////s progress-striped active">
+        <div class="bar" style="width: 0%;"></div>
+    </div>
+</div>-->
+
+    <script type="text/javascript">
+
+    function runPyScript(input){
+        var jqXHR = $.ajax({
+            type: "POST",
+            url: "http://127.0.0.1:5000/",
+            async: false,
+            data: { mydata: input }
+        });
+
+        return jqXHR.responseText;
+    }
+
+    $('#submitbutton').click(function(){
+    alert('hi');
+    //starttt
+      /*    var progress = setInterval(function () {
+    var $bar = $('.bar');
+
+    if ($bar.width() >= 400) {
+        clearInterval(progress);
+        $('.progress').removeClass('active');
+    } else {
+        $bar.width($bar.width() + 8);
+    }
+    $bar.text($bar.width() / 4 + "%");
+}, 800);
+setInterval()*/
+    //starttt
+        datatosend = document.getElementById('tb').value;
+        //alert(datatosend);
+        result = runPyScript(datatosend);
+        console.log('Got back ' + result);
+        alert('Your Search relates to something at '+result+'seconds');
+        var video = document.getElementById('vd');
+        video.play();
+//video.currentTime(video.currentTime() + parseInt(result));
+video.currentTime=parseInt(result);
+
+    });
+$('a').click( function(e) {e.preventDefault();
+
+ var id = e.target.id;
+ if(id=="11")
+ var txtt=document.getElementById("11").alt;
+ if(id=="22")
+ var txtt=document.getElementById("22").alt;
+  if(id=="33")
+ var txtt=document.getElementById("33").alt;
+ //video
+ alert(txtt);
+ var video = document.getElementById('vd');
+//var source = document.createElement('source');
+
+video.setAttribute('src', txtt);
+
+//video.appendChild(source);
+video.play();
+//video.pause();
+/*setTimeout(function() {
+    video.pause();
+
+    source.setAttribute('src', 'http://www.tools4movies.com/trailers/1012/Despicable%20Me%202.mp4');
+
+    video.load();
+    video.play();
+}, 3000);*/
+
+
+ return false; } );
+
+    </script>
+
+</body>
+</html>
